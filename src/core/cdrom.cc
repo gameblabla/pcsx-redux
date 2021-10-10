@@ -1146,6 +1146,7 @@ class CDRomImpl : public PCSX::CDRom {
                 m_channel != 255) {
                 int ret = xa_decode_sector(&m_xa, m_transfer + 4, m_firstSector);
                 if (!ret) {
+                    m_locationChanged = false;
                     attenuate(m_xa.pcm, m_xa.nsamples, m_xa.stereo);
                     PCSX::g_emulator->m_spu->playADPCMchannel(&m_xa);
                     m_firstSector = 0;
